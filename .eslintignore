@@ -1,0 +1,6 @@
+node_module/
+dist/
+index.html
+env.d.ts
+public/
+src/lib/*
