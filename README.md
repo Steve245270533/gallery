@@ -1,4 +1,6 @@
-# gallery
+# gallery（数字展馆）
+
+![cover.jpg](./cover.jpg)
 
 #### 介绍
 本项目中使用的技术栈为`three.js`，使用`blender`进行建模，最后烘焙渲染场景贴图，导出`glb`地图格式在Web端渲染。  
