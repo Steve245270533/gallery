@@ -10,7 +10,7 @@ type KeyStatus = {
 };
 
 export default class Control {
-	core: Core;
+	private core: Core;
 	key_status: KeyStatus = {
 		"KeyW": false,
 		"KeyS": false,
@@ -18,7 +18,7 @@ export default class Control {
 		"KeyD": false,
 		"Space": false
 	};
-	private is_enabled =  false;
+	is_enabled =  false;
 	private key_sets: KeySets = ["KeyW", "KeyS", "KeyA", "KeyD", "Space"];
 	private handleKeyDown: OmitThisParameter<(event: KeyboardEvent) => void>;
 	private handleKeyUp: OmitThisParameter<(event: KeyboardEvent) => void>;

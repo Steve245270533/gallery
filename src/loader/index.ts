@@ -7,7 +7,7 @@ export default class Loader {
 	gltf_loader: GLTFLoader;
 	texture_loader: TextureLoader;
 	audio_loader: AudioLoader;
-	core: Core;
+	private core: Core;
 
 	constructor() {
 		this.core = new Core();

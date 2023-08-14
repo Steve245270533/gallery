@@ -12,7 +12,7 @@ type CharacterParams = {
 }
 
 export default class Character {
-	core: Core;
+	private core: Core;
 	private character!: Mesh<RoundedBoxGeometry, MeshBasicMaterial>;
 	private capsule_info = { // 胶囊体数据
 		radius: 1,

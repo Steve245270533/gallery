@@ -2,7 +2,7 @@ import Core from "../core";
 import {ON_ENTER_APP} from "../Constants";
 
 export default class UI {
-	core: Core;
+	private core: Core;
 
 	/* 预览文案相关 */
 	private preview_tooltip: HTMLElement;

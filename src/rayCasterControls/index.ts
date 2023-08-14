@@ -3,7 +3,7 @@ import {Object3D, Raycaster, Vector2} from "three";
 import {ON_CLICK_RAY_CAST, ON_HIDE_TOOLTIP, ON_SHOW_TOOLTIP} from "../Constants";
 
 export default class RayCasterControls {
-	core: Core;
+	private core: Core;
 	private click_raycaster: Raycaster;
 	private tooltip_raycaster: Raycaster;
 	private hover_point: Vector2;

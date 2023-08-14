@@ -4,7 +4,7 @@ import Core from "../core";
 import {IFRAME_SRC} from "../Constants";
 
 export default class Css3DRenderer {
-	core: Core;
+	private core: Core;
 	private css_scene: Scene;
 	private css_renderer: CSS3DRenderer;
 

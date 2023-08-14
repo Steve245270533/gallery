@@ -8,12 +8,12 @@ import {ON_CLICK_RAY_CAST, ON_HIDE_TOOLTIP, ON_LOAD_MODEL_FINISH, ON_LOAD_PROGRE
 import {Object3D} from "three";
 
 export default class World {
-	core: Core;
-	environment: Environment;
-	character: Character;
-	css_3d_renderer: Css3DRenderer;
-	audio: Audio;
-	ray_caster_controls: RayCasterControls;
+	private core: Core;
+	private environment: Environment;
+	private character: Character;
+	private css_3d_renderer: Css3DRenderer;
+	private audio: Audio;
+	private ray_caster_controls: RayCasterControls;
 
 	constructor() {
 		this.core = new Core();

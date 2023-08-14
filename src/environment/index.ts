@@ -7,7 +7,7 @@ import {MeshBVH, MeshBVHOptions, StaticGeometryGenerator} from "three-mesh-bvh";
 import {Reflector} from "../lib/Reflector";
 
 export default class Environment {
-	core: Core;
+	private core: Core;
 	private loader: Loader;
 	private collision_scene: Group | undefined;
 	collider: Mesh | undefined;
