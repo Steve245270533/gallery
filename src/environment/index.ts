@@ -1,13 +1,6 @@
 import Core from "../core";
 import Loader from "../loader";
-import {
-	BOARD_TEXTURES,
-	BOARDS_INFO,
-	COLLISION_SCENE_URL,
-	ON_LOAD_MODEL_FINISH,
-	ON_LOAD_PROGRESS,
-	STATIC_SCENE_URL
-} from "../Constants";
+import {BOARD_TEXTURES, BOARDS_INFO, COLLISION_SCENE_URL, ON_LOAD_MODEL_FINISH, ON_LOAD_PROGRESS, STATIC_SCENE_URL} from "../Constants";
 import {Group, Material, Mesh, MeshBasicMaterial, Object3D, SRGBColorSpace, Texture, PlaneGeometry} from "three";
 import {isLight, isMesh} from "../utils/typeAssert";
 import {MeshBVH, MeshBVHOptions, StaticGeometryGenerator} from "three-mesh-bvh";
@@ -15,11 +8,11 @@ import {Reflector} from "../lib/Reflector";
 
 export default class Environment {
 	core: Core;
-	loader: Loader;
-	collision_scene: Group | undefined;
+	private loader: Loader;
+	private collision_scene: Group | undefined;
 	collider: Mesh | undefined;
-	texture_boards: Record<string, Texture> = {};
-	gallery_boards: Record<string, Mesh> = {};
+	private texture_boards: Record<string, Texture> = {};
+	private gallery_boards: Record<string, Mesh> = {};
 	raycast_objects: Object3D[] = [];
 	is_load_finished = false;
 
@@ -29,6 +22,9 @@ export default class Environment {
 		this._loadScenes();
 	}
 
+	/*
+	* 加载全部场景物体（地图、画框和贴图、地板反射）
+	* */
 	private async _loadScenes() {
 		try {
 			await this._loadSceneAndCollisionDetection();
@@ -55,6 +51,9 @@ export default class Environment {
 		return Promise.resolve();
 	}
 
+	/*
+	* 设置画板userData数据、贴图翻转
+	* */
 	private _configureGallery() {
 		for (const key in this.texture_boards) {
 			(this.gallery_boards[`gallery${key}_board`].material as MeshBasicMaterial).map = this.texture_boards[key];
@@ -80,7 +79,9 @@ export default class Environment {
 		}
 	}
 
-	// 产生地面镜面反射
+	/*
+	* 产生地面镜面反射
+	* */
 	private _createSpecularReflection() {
 		const mirror = new Reflector(new PlaneGeometry(100, 100), {
 			textureWidth: window.innerWidth * window.devicePixelRatio,
@@ -94,7 +95,9 @@ export default class Environment {
 		this.core.scene.add(mirror);
 	}
 
-	// 加载不含碰撞其他的场景
+	/*
+	* 加载不含碰撞其他的场景
+	* */
 	private _loadStaticScene(): Promise<void> {
 		return new Promise(resolve => {
 			this.loader.gltf_loader.load(STATIC_SCENE_URL, (gltf) => {
@@ -115,7 +118,9 @@ export default class Environment {
 		});
 	}
 
-	// 加载含碰撞检测的场景
+	/*
+	* 加载含碰撞检测的场景
+	* */
 	private _loadSceneAndCollisionDetection(): Promise<void> {
 		return new Promise(resolve => {
 			this.loader.gltf_loader.load(COLLISION_SCENE_URL, (gltf) => {

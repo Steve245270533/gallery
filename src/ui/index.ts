@@ -5,18 +5,18 @@ export default class UI {
 	core: Core;
 
 	/* 预览文案相关 */
-	preview_tooltip: HTMLElement;
-	preview_tips: HTMLElement;
+	private preview_tooltip: HTMLElement;
+	private preview_tips: HTMLElement;
 
 	/* 画展详情相关 */
-	boards_dialog: HTMLElement;
-	boards_container: HTMLElement;
-	boards_content: HTMLElement;
-	boards_title: HTMLElement;
-	boards_author: HTMLElement;
-	boards_describe: HTMLElement;
-	boards_img: HTMLImageElement;
-	boards_close_btn: HTMLElement;
+	private boards_dialog: HTMLElement;
+	private boards_container: HTMLElement;
+	private boards_content: HTMLElement;
+	private boards_title: HTMLElement;
+	private boards_author: HTMLElement;
+	private boards_describe: HTMLElement;
+	private boards_img: HTMLImageElement;
+	private boards_close_btn: HTMLElement;
 
 	constructor() {
 		this.core = new Core();

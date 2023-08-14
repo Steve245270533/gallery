@@ -1,12 +1,4 @@
-import {
-	ACESFilmicToneMapping,
-	Clock,
-	Color,
-	PerspectiveCamera,
-	Scene,
-	SRGBColorSpace,
-	WebGLRenderer
-} from "three";
+import {ACESFilmicToneMapping, Clock, Color, PerspectiveCamera, Scene, SRGBColorSpace, WebGLRenderer} from "three";
 import World from "../world";
 import Emitter from "../utils/Emitter";
 import Loader from "../loader";

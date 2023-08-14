@@ -13,8 +13,8 @@ type CharacterParams = {
 
 export default class Character {
 	core: Core;
-	character!: Mesh<RoundedBoxGeometry, MeshBasicMaterial>;
-	capsule_info = { // 胶囊体数据
+	private character!: Mesh<RoundedBoxGeometry, MeshBasicMaterial>;
+	private capsule_info = { // 胶囊体数据
 		radius: 1,
 		segment: new Line3(
 			new Vector3(),
@@ -22,20 +22,20 @@ export default class Character {
 		)
 	};
 
-	reset_position: Vector3; // 重生点
-	reset_y: number; // 掉落高度
-	gravity: number; // 重力
-	jump_height: number; // 跳跃高度
-	speed: number; // 速度
-	player_is_on_ground = false; // 是否在地面
-	velocity = new Vector3();
+	private reset_position: Vector3; // 重生点
+	private reset_y: number; // 掉落高度
+	private gravity: number; // 重力
+	private jump_height: number; // 跳跃高度
+	private speed: number; // 速度
+	private player_is_on_ground = false; // 是否在地面
+	private velocity = new Vector3();
 
-	up_vector = new Vector3(0, 1, 0);
-	temp_vector = new Vector3();
-	temp_vector2 = new Vector3();
-	temp_box = new Box3();
-	temp_mat = new Matrix4();
-	temp_segment = new Line3();
+	private up_vector = new Vector3(0, 1, 0);
+	private temp_vector = new Vector3();
+	private temp_vector2 = new Vector3();
+	private temp_box = new Box3();
+	private temp_mat = new Matrix4();
+	private temp_segment = new Line3();
 
 	constructor({
 		reset_position = new Vector3(0, 5, 0),
@@ -144,6 +144,9 @@ export default class Character {
 		}
 	}
 
+	/*
+	* 掉落地图检测
+	* */
 	private _checkReset() {
 		if (this.character.position.y < this.reset_y) {
 			this._reset();

@@ -5,8 +5,8 @@ import {AUDIO_URL} from "../Constants";
 
 export default class Audio {
 	core: Core;
-	audio_mesh: Mesh | undefined;
-	positional_audio: PositionalAudio | undefined;
+	private audio_mesh: Mesh | undefined;
+	private positional_audio: PositionalAudio | undefined;
 
 	constructor() {
 		this.core = new Core();

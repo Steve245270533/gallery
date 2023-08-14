@@ -4,10 +4,10 @@ import {ON_CLICK_RAY_CAST, ON_HIDE_TOOLTIP, ON_SHOW_TOOLTIP} from "../Constants"
 
 export default class RayCasterControls {
 	core: Core;
-	click_raycaster: Raycaster;
-	tooltip_raycaster: Raycaster;
-	hover_point: Vector2;
-	mouse_point: Vector2;
+	private click_raycaster: Raycaster;
+	private tooltip_raycaster: Raycaster;
+	private hover_point: Vector2;
+	private mouse_point: Vector2;
 
 	constructor() {
 		this.core = new Core();
@@ -24,7 +24,7 @@ export default class RayCasterControls {
 		this.mouse_point = new Vector2();
 	}
 
-	handleTooltipRayCast(raycast_objects: Object3D[] = []) {
+	updateTooltipRayCast(raycast_objects: Object3D[] = []) {
 		if (raycast_objects.length) {
 			this.tooltip_raycaster.setFromCamera(this.hover_point, this.core.camera);
 			const intersects = this.tooltip_raycaster.intersectObjects(raycast_objects);
@@ -36,7 +36,7 @@ export default class RayCasterControls {
 		}
 	}
 
-	bindClickRayCast(raycast_objects: Object3D[] = []) {
+	bindClickRayCastObj(raycast_objects: Object3D[] = []) {
 		document.body.addEventListener("click", (event) => {
 			this.mouse_point.x = (event.clientX / window.innerWidth) * 2 - 1;
 			this.mouse_point.y = -((event.clientY / window.innerHeight) * 2 - 1);

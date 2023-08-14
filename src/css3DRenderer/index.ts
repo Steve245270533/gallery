@@ -5,8 +5,8 @@ import {IFRAME_SRC} from "../Constants";
 
 export default class Css3DRenderer {
 	core: Core;
-	css_scene: Scene;
-	css_renderer: CSS3DRenderer;
+	private css_scene: Scene;
+	private css_renderer: CSS3DRenderer;
 
 	constructor() {
 		this.core = new Core();
@@ -41,6 +41,7 @@ export default class Css3DRenderer {
 		material.side = DoubleSide;
 		material.transparent = true;
 		material.opacity = 0;
+		// NoBlending混合模式允许GL平面遮挡CSS平面
 		material.blending = NoBlending;
 		const geometry = new PlaneGeometry(1.5, 1.3);
 		const mesh = new Mesh(geometry, material);

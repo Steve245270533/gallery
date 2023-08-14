@@ -4,14 +4,7 @@ import Character from "../character";
 import Css3DRenderer from "../css3DRenderer";
 import Audio from "../audio";
 import RayCasterControls from "../rayCasterControls";
-import {
-	ON_CLICK_RAY_CAST,
-	ON_HIDE_TOOLTIP,
-	ON_LOAD_MODEL_FINISH,
-	ON_LOAD_PROGRESS,
-	ON_ENTER_APP,
-	ON_SHOW_TOOLTIP
-} from "../Constants";
+import {ON_CLICK_RAY_CAST, ON_HIDE_TOOLTIP, ON_LOAD_MODEL_FINISH, ON_LOAD_PROGRESS, ON_ENTER_APP, ON_SHOW_TOOLTIP} from "../Constants";
 import {Object3D} from "three";
 
 export default class World {
@@ -45,7 +38,7 @@ export default class World {
 		if (this.environment.collider && this.environment.is_load_finished) {
 			this.css_3d_renderer.update();
 			this.character.update(delta, this.environment.collider);
-			this.ray_caster_controls.handleTooltipRayCast(this.environment.raycast_objects);
+			this.ray_caster_controls.updateTooltipRayCast(this.environment.raycast_objects);
 		}
 	}
 
@@ -67,7 +60,7 @@ export default class World {
 		this.core.ui.createLoadingConfirm();
 
 		// 场景模型加载完毕后将场景中需要光线投射检测的物体传入给rayCasterControls
-		this.ray_caster_controls.bindClickRayCast(this.environment.raycast_objects);
+		this.ray_caster_controls.bindClickRayCastObj(this.environment.raycast_objects);
 	}
 
 	private _handleLoadProgress([{url, loaded, total}]: [{url: string, loaded: number, total: number}]) {
