@@ -1,5 +1,5 @@
 import Core from "../core";
-import {ON_PLAY_AUDIO} from "../Constants";
+import {ON_ENTER_APP} from "../Constants";
 
 export default class UI {
 	core: Core;
@@ -128,7 +128,7 @@ export default class UI {
 		document.body.appendChild(div);
 		(div.children[0].children[1] as HTMLElement).onclick = () => {
 			div.remove();
-			this.core.$emit(ON_PLAY_AUDIO);
+			this.core.$emit(ON_ENTER_APP);
 		};
 	}
 }

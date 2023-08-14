@@ -1,7 +1,12 @@
+/*
+* Model Resources
+* */
 export const COLLISION_SCENE_URL = new URL("./assets/models/scene_collision.glb", import.meta.url).href;
-
 export const STATIC_SCENE_URL = new URL("./assets/models/scene_desk_obj.glb", import.meta.url).href;
 
+/*
+* Texture Resources
+* */
 export const BOARD_TEXTURES = [
 	new URL("./assets/boards/1.png", import.meta.url).href,
 	new URL("./assets/boards/2.png", import.meta.url).href,
@@ -15,8 +20,14 @@ export const BOARD_TEXTURES = [
 	new URL("./assets/boards/10.png", import.meta.url).href
 ];
 
+/*
+* Audio Resources
+* */
 export const AUDIO_URL = new URL("./assets/audio/我记得.m4a", import.meta.url).href;
 
+/*
+* Intro
+* */
 export const BOARDS_INFO: Record<string, {title: string, author: string, describe: string}> = {
 	1: {
 		title: "《小橘贝》",
@@ -114,19 +125,19 @@ export const BOARDS_INFO: Record<string, {title: string, author: string, describ
 	}
 };
 
+/*
+* Computer Iframe SRC
+* */
 export const IFRAME_SRC = "/ocean/index.html";
 
-export const ON_CHARACTER_JUMP = "on-character-jump";
-
+/*
+* Events
+* */
 export const ON_LOAD_PROGRESS = "on-load-progress";
-
 export const ON_LOAD_MODEL_FINISH = "on-load-model-finish";
-
-export const ON_PLAY_AUDIO = "on-play-audio";
-
 export const ON_CLICK_RAY_CAST = "on-click-ray-cast";
-
 export const ON_SHOW_TOOLTIP = "on-show-tooltip";
-
 export const ON_HIDE_TOOLTIP = "on-hide-tooltip";
-
+export const ON_KEY_DOWN = "on-key-down";
+export const ON_KEY_UP = "on-key-up";
+export const ON_ENTER_APP = "on-enter-app";

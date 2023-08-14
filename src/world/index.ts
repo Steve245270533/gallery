@@ -9,6 +9,7 @@ import {
 	ON_HIDE_TOOLTIP,
 	ON_LOAD_MODEL_FINISH,
 	ON_LOAD_PROGRESS,
+	ON_ENTER_APP,
 	ON_SHOW_TOOLTIP
 } from "../Constants";
 import {Object3D} from "three";
@@ -31,6 +32,7 @@ export default class World {
 		this.core.$on(ON_CLICK_RAY_CAST, this._onClickRayCast.bind(this));
 		this.core.$on(ON_SHOW_TOOLTIP, this._onShowTooltip.bind(this));
 		this.core.$on(ON_HIDE_TOOLTIP, this._onHideTooltip.bind(this));
+		this.core.$on(ON_ENTER_APP, this._onEnterApp.bind(this));
 
 		this.environment = new Environment();
 		this.character = new Character({speed: 12});
@@ -47,11 +49,24 @@ export default class World {
 		}
 	}
 
+	/*
+	* 点击进入展馆后的回调
+	* */
+	private _onEnterApp() {
+		this.audio.playAudio();
+		// 进入后才允许控制键盘
+		this.core.control.enabled();
+	}
+
 	private async _onLoadModelFinish() {
+		// 场景模型加载完毕后开始加载音频
 		await this.audio.createAudio();
 
+		// 音频加载完毕后移除加载进度UI，显示进入确认UI
 		this.core.ui.removeElement(".loading");
 		this.core.ui.createLoadingConfirm();
+
+		// 场景模型加载完毕后将场景中需要光线投射检测的物体传入给rayCasterControls
 		this.ray_caster_controls.bindClickRayCast(this.environment.raycast_objects);
 	}
 

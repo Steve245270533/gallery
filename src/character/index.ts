@@ -1,7 +1,7 @@
 import {Box3, Line3, Matrix4, Mesh, MeshBasicMaterial, Vector3} from "three";
 import {RoundedBoxGeometry} from "three/examples/jsm/geometries/RoundedBoxGeometry";
 import Core from "../core";
-import {ON_CHARACTER_JUMP} from "../Constants";
+import {ON_KEY_DOWN} from "../Constants";
 
 type CharacterParams = {
 	reset_position?: Vector3,
@@ -54,7 +54,7 @@ export default class Character {
 
 		this._createCharacter();
 
-		this.core.$on(ON_CHARACTER_JUMP, this._onCharacterJump.bind(this));
+		this.core.$on(ON_KEY_DOWN, this._onKeyDown.bind(this));
 	}
 
 	update(delta_time: number, collider: Mesh) {
@@ -192,6 +192,12 @@ export default class Character {
 		this.core.orbit_controls.maxPolarAngle = Math.PI;
 		this.core.orbit_controls.minDistance = 1e-4;
 		this.core.orbit_controls.maxDistance = 1e-4;
+	}
+
+	private _onKeyDown([key_code]: [keycode: string]) {
+		if (key_code === "Space") {
+			this._onCharacterJump();
+		}
 	}
 
 	private _onCharacterJump() {

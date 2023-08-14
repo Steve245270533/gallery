@@ -13,9 +13,11 @@ export default class RayCasterControls {
 		this.core = new Core();
 
 		this.click_raycaster = new Raycaster();
+		// 通过click点击检测距离为18
 		this.click_raycaster.far = 18;
 
 		this.tooltip_raycaster = new Raycaster();
+		// tooltip显示检测距离为15
 		this.tooltip_raycaster.far = 15;
 
 		this.hover_point = new Vector2(0, 0);
@@ -35,7 +37,6 @@ export default class RayCasterControls {
 	}
 
 	bindClickRayCast(raycast_objects: Object3D[] = []) {
-		// 事件的监听
 		document.body.addEventListener("click", (event) => {
 			this.mouse_point.x = (event.clientX / window.innerWidth) * 2 - 1;
 			this.mouse_point.y = -((event.clientY / window.innerHeight) * 2 - 1);

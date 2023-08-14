@@ -1,7 +1,7 @@
 import {Mesh, MeshBasicMaterial, PlaneGeometry, PositionalAudio, AudioListener} from "three";
 import Core from "../core";
 import {PositionalAudioHelper} from "three/examples/jsm/helpers/PositionalAudioHelper";
-import {AUDIO_URL, ON_PLAY_AUDIO} from "../Constants";
+import {AUDIO_URL} from "../Constants";
 
 export default class Audio {
 	core: Core;
@@ -10,10 +10,6 @@ export default class Audio {
 
 	constructor() {
 		this.core = new Core();
-
-		this.core.$on(ON_PLAY_AUDIO, () => {
-			this.playAudio();
-		});
 	}
 
 	async createAudio() {

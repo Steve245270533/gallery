@@ -1,7 +1,7 @@
 import Core from "../core";
-import {ON_CHARACTER_JUMP} from "../Constants";
+import {ON_KEY_DOWN, ON_KEY_UP} from "../Constants";
 
-type Keys = "KeyW" | "KeyS" | "KeyA" | "KeyD" | "KeyV" | "Space";
+type Keys = "KeyW" | "KeyS" | "KeyA" | "KeyD" | "Space";
 
 type KeySets = Keys[]
 
@@ -16,10 +16,10 @@ export default class Control {
 		"KeyS": false,
 		"KeyA": false,
 		"KeyD": false,
-		"KeyV": false,
 		"Space": false
 	};
-	private key_sets: KeySets = ["KeyW", "KeyS", "KeyA", "KeyD", "KeyV", "Space"];
+	private is_enabled =  false;
+	private key_sets: KeySets = ["KeyW", "KeyS", "KeyA", "KeyD", "Space"];
 	private handleKeyDown: OmitThisParameter<(event: KeyboardEvent) => void>;
 	private handleKeyUp: OmitThisParameter<(event: KeyboardEvent) => void>;
 
@@ -36,22 +36,29 @@ export default class Control {
 	}
 
 	onKeyDown(event: KeyboardEvent) {
-		if (this.isAllowKey(event.code)) {
+		if (this.isAllowKey(event.code) && this.is_enabled) {
 			this.key_status[event.code] = true;
-			if (event.code === "Space") {
-				this.core.$emit(ON_CHARACTER_JUMP);
-			}
+			this.core.$emit(ON_KEY_DOWN, event.code);
 		}
 	}
 
 	onKeyUp(event: KeyboardEvent) {
-		if (this.isAllowKey(event.code)) {
+		if (this.isAllowKey(event.code) && this.is_enabled) {
 			this.key_status[event.code] = false;
+			this.core.$emit(ON_KEY_UP, event.code);
 		}
 	}
 
 	// 判断是否为允许的键盘key
 	isAllowKey(key: string): key is Keys {
 		return this.key_sets.includes(key as Keys);
+	}
+
+	disabled() {
+		this.is_enabled = false;
+	}
+
+	enabled() {
+		this.is_enabled = true;
 	}
 }
