@@ -1,7 +1,17 @@
 {
-  "name": "vite-project",
+  "name": "gallery",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.1",
+  "description": "Digital exhibition project developed based on three.js.",
+  "keywords": [
+    "3d",
+    "threejs",
+    "game",
+    "Digital exhibition",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "Steve245270533",
   "type": "module",
   "scripts": {
     "dev": "vite",
