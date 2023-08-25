@@ -52,6 +52,7 @@ export default class Core extends Emitter {
 			this.renderer.render(this.scene, this.camera);
 			const delta_time = Math.min(0.05, this.clock.getDelta());
 			this.world.update(delta_time);
+			this.orbit_controls.update();
 		});
 	}
 
@@ -64,7 +65,7 @@ export default class Core extends Emitter {
 		this.camera.aspect = window.innerWidth / window.innerHeight;
 		this.camera.near = 0.1;
 		this.camera.far = 1000;
-		this.camera.position.set(3, 0, 3);
+		this.camera.position.set(0, 0, 3);
 		this.camera.updateProjectionMatrix();
 	}
 
