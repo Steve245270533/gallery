@@ -45,7 +45,24 @@ export default class Environment {
 		}
 
 		for (const key in this.texture_boards) {
-			this.texture_boards[key].colorSpace = SRGBColorSpace;
+			const texture = this.texture_boards[key]
+			texture.colorSpace = SRGBColorSpace;
+
+			// 根据纹理的宽高比和平面的宽高比，计算需要的缩放比例
+			const texture_aspect_ratio = texture.image.width / texture.image.height;
+			let scale_x = 1;
+			let scale_y = 1;
+
+			if (texture_aspect_ratio > 1) {
+				scale_x = 1 / texture_aspect_ratio;
+			} else {
+				scale_y = texture_aspect_ratio;
+			}
+
+			// 设置纹理的偏移和重复以进行居中和适应
+			texture.offset.set(0.5 - scale_x / 2, 0.5 - scale_y / 2);
+			texture.repeat.set(scale_x, scale_y);
+			texture.needsUpdate = true;
 		}
 
 		return Promise.resolve();
@@ -56,9 +73,11 @@ export default class Environment {
 	* */
 	private _configureGallery() {
 		for (const key in this.texture_boards) {
-			(this.gallery_boards[`gallery${key}_board`].material as MeshBasicMaterial).map = this.texture_boards[key];
-			this.gallery_boards[`gallery${key}_board`].userData = {
-				name: this.gallery_boards[`gallery${key}_board`].name,
+			const board = this.gallery_boards[`gallery${key}_board`];
+			const board_material = board.material;
+			(board_material as MeshBasicMaterial).map = this.texture_boards[key];
+			board.userData = {
+				name: board.name,
 				title: BOARDS_INFO[key].title,
 				author: BOARDS_INFO[key].author,
 				describe: BOARDS_INFO[key].describe,
@@ -69,13 +88,13 @@ export default class Environment {
 
 			// 翻转贴图
 			if ([4, 5, 6, 7, 9].includes(+key)) {
-				this.gallery_boards[`gallery${key}_board`].rotation.y = -Math.PI / 2;
+				board.rotation.y = -Math.PI / 2;
 			}
 			if (8 === +key) {
-				this.gallery_boards[`gallery${key}_board`].rotation.y = Math.PI;
+				board.rotation.y = Math.PI;
 			}
 
-			(this.gallery_boards[`gallery${key}_board`].material as MeshBasicMaterial).needsUpdate = true;
+			(board_material as MeshBasicMaterial).needsUpdate = true;
 		}
 	}
 
