@@ -37,16 +37,30 @@ export default class RayCasterControls {
 	}
 
 	bindClickRayCastObj(raycast_objects: Object3D[] = []) {
-		document.body.addEventListener("click", (event) => {
-			this.mouse_point.x = (event.clientX / window.innerWidth) * 2 - 1;
-			this.mouse_point.y = -((event.clientY / window.innerHeight) * 2 - 1);
+		let down_x = 0;
+		let down_y = 0;
 
-			this.click_raycaster.setFromCamera(this.mouse_point, this.core.camera);
-			const intersects = this.click_raycaster.intersectObjects(raycast_objects);
-
-			if (intersects.length && intersects[0].object.userData.show_boards) {
-				this.core.$emit(ON_CLICK_RAY_CAST, intersects[0].object);
-			}
+		document.body.addEventListener("pointerdown", (event) => {
+			down_x = event.screenX;
+			down_y = event.screenY;
 		});
+
+		document.body.addEventListener("pointerup", (event) => {
+			const offset_x = Math.abs(event.screenX - down_x)
+			const offset_y = Math.abs(event.screenY - down_y)
+
+			// 点击偏移量限制
+			if (offset_x <= 1 && offset_y <= 1) {
+				this.mouse_point.x = (event.clientX / window.innerWidth) * 2 - 1;
+				this.mouse_point.y = -((event.clientY / window.innerHeight) * 2 - 1);
+
+				this.click_raycaster.setFromCamera(this.mouse_point, this.core.camera);
+				const intersects = this.click_raycaster.intersectObjects(raycast_objects);
+
+				if (intersects.length && intersects[0].object.userData.show_boards) {
+					this.core.$emit(ON_CLICK_RAY_CAST, intersects[0].object);
+				}
+			}
+		})
 	}
 }
