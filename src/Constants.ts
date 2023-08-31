@@ -128,7 +128,7 @@ export const BOARDS_INFO: Record<string, {title: string, author: string, describ
 /*
 * Computer Iframe SRC
 * */
-export const IFRAME_SRC = "/ocean/index.html";
+export const IFRAME_SRC = "/universe/index.html";
 
 /*
 * Events
