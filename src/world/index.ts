@@ -48,7 +48,7 @@ export default class World {
 	private _onEnterApp() {
 		this.audio.playAudio();
 		// 进入后才允许控制键盘
-		this.core.control.enabled();
+		this.core.control_manage.enabled();
 	}
 
 	private async _onLoadModelFinish() {

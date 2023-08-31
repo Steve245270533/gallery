@@ -100,9 +100,9 @@
 	-moz-user-select: none;
 	position: fixed;
 	left: 50%;
-	bottom: 10%;
+	bottom: 15%;
 	transform: translateX(-50%);
-	z-index: 9999;
+	z-index: 1;
 	max-width: 260px;
 	border-radius: 10px;
 	padding: 10px 20px;
@@ -122,7 +122,7 @@
 	left: 50%;
 	bottom: 1%;
 	transform: translateX(-50%);
-	z-index: 9999;
+	z-index: 1;
 	border-radius: 4px;
 	padding: 5px 20px;
 	background: rgba(0, 0, 0, 0.5);
@@ -217,5 +217,31 @@
 	#boards-info .boards-container .img img {
 		height: auto;
 		object-fit: initial;
+	}
+}
+
+/* 虚拟摇杆 */
+#joystick {
+	display: none;
+	position: absolute;
+	bottom: 10%;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #000;
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+}
+
+@media (orientation: portrait) {
+	#joystick {
+		left: calc(50% - 50px);
+	}
+}
+
+@media (orientation: landscape) {
+	#joystick {
+		left: 10%;
 	}
 }

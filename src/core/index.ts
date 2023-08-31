@@ -2,7 +2,7 @@ import {ACESFilmicToneMapping, Clock, Color, PerspectiveCamera, Scene, SRGBColor
 import World from "../world";
 import Emitter from "../utils/Emitter";
 import Loader from "../loader";
-import Control from "../control";
+import ControlManage from "../ControlManage";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import UI from "../ui";
 
@@ -16,7 +16,7 @@ export default class Core extends Emitter {
 	orbit_controls!: OrbitControls;
 
 	ui!: UI;
-	control!: Control;
+	control_manage!: ControlManage;
 	loader!: Loader;
 	world!: World;
 
@@ -42,7 +42,7 @@ export default class Core extends Emitter {
 		this._initResponsiveResize();
 
 		this.ui = new UI();
-		this.control = new Control();
+		this.control_manage = new ControlManage();
 		this.loader = new Loader();
 		this.world = new World();
 	}

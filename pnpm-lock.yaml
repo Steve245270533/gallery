@@ -7,6 +7,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.48.1
   eslint: ^8.31.0
   mitt: ^3.0.1
+  nipplejs: ^0.10.1
   three: ^0.155.0
   three-mesh-bvh: ^0.6.3
   types: ^0.1.1
@@ -15,6 +16,7 @@ specifiers:
 
 dependencies:
   mitt: 3.0.1
+  nipplejs: 0.10.1
   three: 0.155.0
   three-mesh-bvh: 0.6.3_three@0.155.0
 
@@ -1021,6 +1023,10 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /nipplejs/0.10.1:
+    resolution: {integrity: sha512-BuKBDfdd7BVK6E7sivHwrRPh9TETsHuHEwuT95nAjRz2uJu5roYngNs+BdRe8nYf8mP6OZ9aRqdgMlqVsDMRcw==}
+    dev: false
 
   /once/1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
