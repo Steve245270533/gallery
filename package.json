@@ -1,7 +1,7 @@
 {
   "name": "gallery",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Digital exhibition project developed based on three.js.",
   "keywords": [
     "3d",
