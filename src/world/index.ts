@@ -18,8 +18,6 @@ export default class World {
 	constructor() {
 		this.core = new Core();
 
-		this.core.ui.createLoading();
-
 		this.core.$on(ON_LOAD_PROGRESS, this._handleLoadProgress.bind(this));
 		this.core.$on(ON_LOAD_MODEL_FINISH, this._onLoadModelFinish.bind(this));
 		this.core.$on(ON_CLICK_RAY_CAST, this._onClickRayCast.bind(this));
@@ -56,8 +54,8 @@ export default class World {
 		await this.audio.createAudio();
 
 		// 音频加载完毕后移除加载进度UI，显示进入确认UI
-		this.core.ui.removeElement(".loading");
-		this.core.ui.createLoadingConfirm();
+		this.core.ui.removeLoading();
+		this.core.ui.showLoadingConfirm();
 
 		// 场景模型加载完毕后将场景中需要光线投射检测的物体传入给rayCasterControls
 		this.ray_caster_controls.bindClickRayCastObj(this.environment.raycast_objects);
