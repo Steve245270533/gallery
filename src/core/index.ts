@@ -2,7 +2,7 @@ import {ACESFilmicToneMapping, Clock, Color, PerspectiveCamera, Scene, SRGBColor
 import World from "../world";
 import Emitter from "../utils/Emitter";
 import Loader from "../loader";
-import ControlManage from "../ControlManage";
+import ControlManage from "../controlManage";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import UI from "../ui";
 
