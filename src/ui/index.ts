@@ -38,7 +38,7 @@ export default class UI {
 			boards_author: document.querySelector(".boards-container .info .author")!,
 			boards_describe: document.querySelector(".boards-container .info .describe")!,
 			boards_img: document.querySelector(".boards-container .img img")!,
-		}
+		};
 
 		document.body.addEventListener("click", this.handleClick.bind(this));
 	}
@@ -49,21 +49,21 @@ export default class UI {
 			const MAP_EVENT = [
 				{
 					verify() {
-						return (e.target as HTMLElement).classList.contains("start")
+						return (e.target as HTMLElement).classList.contains("start");
 					},
 					handler: this.onClickEnterApp.bind(this)
 				},
 				{
 					verify() {
-						return (e.target as HTMLElement).classList.contains("boards-info-close") || (e.target as HTMLElement).classList.contains("boards-info")
+						return (e.target as HTMLElement).classList.contains("boards-info-close") || (e.target as HTMLElement).classList.contains("boards-info");
 					},
 					handler: this.hideBoardsBox.bind(this)
 				}
-			]
+			];
 
-			const event = MAP_EVENT.find(item => item.verify())
+			const event = MAP_EVENT.find(item => item.verify());
 			if (event) {
-				event.handler()
+				event.handler();
 			}
 		}
 	}
