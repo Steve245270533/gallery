@@ -21,6 +21,12 @@ export default class UI {
 		boards_author: HTMLElement;
 		boards_describe: HTMLElement;
 		boards_img: HTMLImageElement;
+
+		/* 帮助按钮 */
+		help_btn: HTMLElement;
+
+		/* 操作指引弹窗 */
+		operating_intro: HTMLElement;
 	};
 
 	constructor() {
@@ -38,6 +44,8 @@ export default class UI {
 			boards_author: document.querySelector(".boards-container .info .author")!,
 			boards_describe: document.querySelector(".boards-container .info .describe")!,
 			boards_img: document.querySelector(".boards-container .img img")!,
+			help_btn: document.querySelector(".help")!,
+			operating_intro: document.querySelector(".operating-intro")!,
 		};
 
 		document.body.addEventListener("click", this.handleClick.bind(this));
@@ -48,16 +56,28 @@ export default class UI {
 			// 定义一套对应元素click响应事件的策略
 			const MAP_EVENT = [
 				{
-					verify() {
+					verify: () => {
 						return (e.target as HTMLElement).classList.contains("start");
 					},
 					handler: this.onClickEnterApp.bind(this)
 				},
 				{
-					verify() {
-						return (e.target as HTMLElement).classList.contains("boards-info-close") || (e.target as HTMLElement).classList.contains("boards-info");
+					verify: () => {
+						return this._isBInA(["boards-info-close", "boards-info"], (e.target as HTMLElement).classList.value.split(" "));
 					},
 					handler: this.hideBoardsBox.bind(this)
+				},
+				{
+					verify: () => {
+						return (e.target as HTMLElement).classList.contains("help");
+					},
+					handler: this.showHelp.bind(this)
+				},
+				{
+					verify: () => {
+						return this._isBInA(["operating-intro-close", "operating-intro", "operating-intro-img"], (e.target as HTMLElement).classList.value.split(" "));
+					},
+					handler: this.hideHelp.bind(this)
 				}
 			];
 
@@ -72,6 +92,14 @@ export default class UI {
 		this.doms.loading_complete.classList.remove("display-none");
 		this.doms.loading_complete.remove();
 		this.core.$emit(ON_ENTER_APP);
+	}
+
+	showHelp() {
+		this.doms.operating_intro.classList.remove("display-none");
+	}
+
+	hideHelp() {
+		this.doms.operating_intro.classList.add("display-none");
 	}
 
 	showBoardsBox(title: string, author: string, describe: string, img_src: string) {
@@ -119,5 +147,9 @@ export default class UI {
 
 	showLoadingConfirm() {
 		this.doms.loading_complete.classList.remove("display-none");
+	}
+
+	private _isBInA(A: string[], B: string[]) {
+		return B.some(name => A.includes(name));
 	}
 }

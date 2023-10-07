@@ -12,9 +12,6 @@
 	color: #fff;
 	padding: 20px;
 	user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	-moz-user-select: none;
 	text-align: center;
 	width: 100%;
 	height: 100%;
@@ -48,9 +45,6 @@
 .loading-complete {
 	padding: 20px;
 	user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	-moz-user-select: none;
 	text-align: center;
 	width: 100%;
 	height: 100%;
@@ -99,9 +93,6 @@
 /* 预览div */
 .preview-tooltip {
 	user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	-moz-user-select: none;
 	position: fixed;
 	left: 50%;
 	bottom: 15%;
@@ -116,9 +107,6 @@
 }
 .preview-tips {
 	user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	-moz-user-select: none;
 	position: fixed;
 	width: 65%;
 	text-align: center;
@@ -134,9 +122,6 @@
 }
 .boards-info {
 	user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	-moz-user-select: none;
 	position: fixed;
 	z-index: 99999;
 	left: 0;
@@ -231,6 +216,63 @@
 	}
 }
 
+/* 操作指引 */
+.help {
+	position: fixed;
+	z-index: 1;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	background: #333;
+	color: #ccc;
+	border-radius: 50%;
+	text-align: center;
+	right: 20px;
+	top: 20px;
+	user-select: none;
+	cursor: pointer;
+}
+.operating-intro {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9999;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	user-select: none;
+}
+.operating-intro h2 {
+	position: absolute;
+	left: 12px;
+	top: 12px;
+	color: #333;
+	font-size: 22px;
+}
+.operating-intro img {
+	height: 60%;
+}
+.operating-intro .close {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	cursor: pointer;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	text-align: center;
+	-webkit-tap-highlight-color: transparent;
+}
+.operating-intro .close::after {
+	content: "x";
+	font-size: 22px;
+	color: #666;
+}
+
 /* 虚拟摇杆 */
 #joystick {
 	display: none;
@@ -240,12 +282,14 @@
 	height: 100px;
 	border: 1px solid #000;
 	user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-webkit-user-select: none;
 }
 
 @media (orientation: portrait) {
+	.operating-intro img {
+		width: 90%;
+		height: auto;
+	}
+
 	#joystick {
 		left: calc(50% - 50px);
 	}
