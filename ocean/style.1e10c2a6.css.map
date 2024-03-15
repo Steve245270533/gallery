@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,EACC,QAAS,CACT,SAAU,CACV,qBACD,CAEA,UACC,UAAW,CACX,WAAY,CACZ,eACD","file":"style.1e10c2a6.css","sourceRoot":"..\\src","sourcesContent":["* {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nhtml,body {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\toverflow: hidden;\r\n}\r\n"]}
