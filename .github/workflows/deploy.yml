@@ -21,7 +21,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install deps
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Modify "base" from vite.config.ts
         run: |
